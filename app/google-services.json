@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "681253293089",
+    "project_id": "real-mealmate",
+    "storage_bucket": "real-mealmate.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:681253293089:android:9781f949c6907fe9e4e760",
+        "android_client_info": {
+          "package_name": "com.example.mealmate"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvLF-qBEcIv1lqHGjXDW0fnZe-stnhP5A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
