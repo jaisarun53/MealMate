@@ -11,6 +11,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -53,18 +54,17 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
 
-                if (id == R.id.nav_signout) { // Replace with your sign-out menu item ID
+                // Handle sign out
+                if (id == R.id.nav_signout) {
                     performSignOut(); // Redirect to AppStartActivity after Firebase sign-out
+                    drawer.closeDrawer(GravityCompat.START); // Close the drawer
                     return true;
                 }
-//                if (id == R.id.nav_weekly_meal_plan) {
-//                    Toast.makeText(MainActivity.this, "Navigating to Weekly Meal Plan", Toast.LENGTH_SHORT).show();
-//                }
-
 
                 // Handle other menu items
-                return NavigationUI.onNavDestinationSelected(item, navController)
-                        || MainActivity.super.onOptionsItemSelected(item);
+                boolean handled = NavigationUI.onNavDestinationSelected(item, navController);
+                drawer.closeDrawer(GravityCompat.START); // Close the drawer after selection
+                return handled; // Return handled directly
             }
         });
 
@@ -111,27 +111,27 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-///shop_list cart icon click Action
+    ///shop_list cart icon click Action
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu); // Use your menu XML file here
         return true;
     }
 
-        @Override
-        public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-            int id = item.getItemId(); // Get the ID of the clicked menu item
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId(); // Get the ID of the clicked menu item
 
-            if (id == R.id.shop_list) {
-                // Handle the click for the settings icon
-                Intent intent = new Intent(this, ShopListActivity.class);
-                this.startActivity(intent);
-                return true;
-            } else {
-                return super.onOptionsItemSelected(item);
-            }
+        if (id == R.id.shop_list) {
+            // Handle the click for the settings icon
+            Intent intent = new Intent(this, ShopListActivity.class);
+            this.startActivity(intent);
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
-
     }
+
+}
 
 
